@@ -1,0 +1,5 @@
+# Docker build context exclusions
+
+.gradle
+build
+.git

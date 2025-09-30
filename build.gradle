@@ -1,0 +1,31 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application.
+    id 'application'
+    // Apply the java plugin to configure the Java toolchain
+    id 'java'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit Jupiter for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'com.example.HelloWorld'
+}
+
+test {
+    // Use the JUnit Platform for running tests.
+    useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+}
