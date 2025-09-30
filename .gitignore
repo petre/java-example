@@ -26,3 +26,6 @@ replay_pid*
 # Gradle
 .gradle/
 build/
+gradlew
+gradlew.bat
+gradle/wrapper/
