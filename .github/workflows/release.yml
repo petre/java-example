@@ -22,8 +22,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build gradle wrapper
-        run: gradle wrapper
+      - name: Get short commit SHA
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
@@ -38,6 +39,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           # The name of the tag will be the short commit SHA
-          tag_name: ${{ github.sha }}
+          tag_name: ${{ steps.vars.outputs.sha_short }}
           # The files to upload as release assets
           files: build/distributions/java-example.zip
