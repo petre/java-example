@@ -4,12 +4,11 @@ FROM gradle:jdk21-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /home/gradle/project
 
-# Copy the Gradle wrapper files to leverage Docker layer caching
-COPY gradlew .
-COPY gradle ./gradle
-
 # Copy the build file
 COPY build.gradle .
+
+# Install gradle wrapper
+RUN gradle wrapper
 
 # Copy the source code
 COPY src ./src
@@ -24,7 +23,7 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy the built application from the builder stage
-COPY --from=builder /home/gradle/project/build/install/java-example/ .
+COPY --from=builder /home/gradle/project/build/install/project/ .
 
 # The command to run the application
-CMD ["./bin/java-example"]
+CMD ["./bin/project"]
